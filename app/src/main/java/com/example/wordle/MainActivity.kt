@@ -26,14 +26,8 @@ class MainActivity : AppCompatActivity() {
         var checkGuessDisplay = ""
         var userInputDisplay = ""
 
-        getUserInput.setOnClickListener{
-            if (guessLimit == 0){
-                failView.text = "Oops! You're Out of Attempts!\nCorrect Answer: $wordToGuess"
-            }
-
-            else {
-                // pass text to checker
-                // use conditional to block after 4
+        getUserInput.setOnClickListener {
+            if (guessLimit != 0) {
                 val editTextString = editText.text.toString().uppercase(Locale.getDefault());
                 val result = checkGuess(editTextString, wordToGuess)
                 checkGuess(editTextString, wordToGuess)
@@ -50,6 +44,8 @@ class MainActivity : AppCompatActivity() {
                 debugView.text = userInputDisplay
                 guessLimit--
 
+                if (guessLimit == 0) failView.text =
+                    "Oops! You're Out of Attempts!\nCorrect Answer: $wordToGuess"
             }
         }
     }
