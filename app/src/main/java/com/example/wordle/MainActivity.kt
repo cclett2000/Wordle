@@ -1,6 +1,8 @@
 package com.example.wordle
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         val wordToGuess = FourLetterWordList.getRandomFourLetterWord();     // get word to check
 
         val guessesField = findViewById<TextView>(R.id.guesses_view)        // guess results display
+        val showAnswer = findViewById<TextView>(R.id.dev_answer_show)       // show answer for demo
         val failView = findViewById<TextView>(R.id.fail_view)               // fail view -- basically info view, just hate refactoring
         val debugView = findViewById<TextView>(R.id.DEBUG_view_word)        // guess word display -- used to be debug, still hate refactoring
         val getUserInput = findViewById<Button>(R.id.btn_get_user_input);   // button to get user input
@@ -28,8 +31,18 @@ class MainActivity : AppCompatActivity() {
 
         // button logic
         getUserInput.setOnClickListener {
+            // reset
+            if (guessLimit == 0){
+                finish()
+                overridePendingTransition(0, 0);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+
             // guesses remaining check
             if (guessLimit != 0) {
+                showAnswer.setTextColor(Color.parseColor("#D3D3D3"));
+                showAnswer.text = "Ans: $wordToGuess...Shhhhh You Don't See a Thing..."
                 var isCorrect = false       // correct guess flag
                 val editTextString = editText.text.toString().uppercase(Locale.getDefault());   // to string for edit text
                 if (editTextString.length == 4) {
@@ -55,14 +68,17 @@ class MainActivity : AppCompatActivity() {
                     // on win conditional
                     if (result == "OOOO") {
                         failView.text = "Congratz! You've Guessed Correctly!\nAnswer: $wordToGuess"
+                        getUserInput.text = "Reset"
                         isCorrect = true
                         guessLimit = 0
                     } else {
                         guessLimit--
 
                         // on lost conditional
-                        if (guessLimit == 0 && !isCorrect)
+                        if (guessLimit == 0 && !isCorrect) {
                             failView.text = "Oops! You're Out of Attempts!\nAnswer: $wordToGuess"
+                            getUserInput.text = "Reset"
+                        }
                     }
                 }
                 // invalid input conditional
