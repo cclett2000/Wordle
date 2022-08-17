@@ -23,9 +23,8 @@ The following **optional** features are implemented:
 - [ ] User can see a 'streak' record of how many words they've guessed correctly.
 
 ## Demo
-Here's a walkthrough of implemented user stories: 
-     - https://github.com/cclett2000/Wordle/blob/master/WordleDemo.gif
-     - GIF created with [LiceCap](http://www.cockos.com/licecap/).  
+- https://github.com/cclett2000/Wordle/blob/master/WordleDemo.gif
+- GIF created with [LiceCap](http://www.cockos.com/licecap/).  
 
 ## Notes
 - Kotlin is DEFINITELY not Java <imagine my surprise when I typed a bunch of Java code and everything broke XD>
