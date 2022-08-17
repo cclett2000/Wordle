@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
 
             // guesses remaining check
             if (guessLimit != 0) {
-                showAnswer.setTextColor(Color.parseColor("#D3D3D3"));
-                showAnswer.text = "Ans: $wordToGuess...Shhhhh You Don't See a Thing..."
+                //showAnswer.setTextColor(Color.parseColor("#D3D3D3"));
+                //showAnswer.text = "Ans: $wordToGuess...Shhhhh You Don't See a Thing..."
                 var isCorrect = false       // correct guess flag
                 val editTextString = editText.text.toString().uppercase(Locale.getDefault());   // to string for edit text
                 if (editTextString.length == 4) {
